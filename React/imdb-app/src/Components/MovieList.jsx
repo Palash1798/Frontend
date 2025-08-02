@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+// https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=1
+
 import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 
-const MovieList = () => {
 
+const MovieList = ({ favourites, onAdd, onDelete }) => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -17,26 +19,30 @@ const MovieList = () => {
             .then(data => setMovies(data.results));
     }
 
-
     return (
         <div className="movielist-wrapper">
-            {/* <Header /> */}
             <div className="movielist-heading">
-                <h1>Trending</h1>
+                <h1>Trending {Object.keys(favourites).length}</h1>
             </div>
             <div className="movielist">
                 {
-                    movies.map(movie =>
+                    movies.map(movie => (
                         <div className="movie">
                             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                             {/* <a href="/movie-detail"><h2>{movie.original_title}</h2></a> */}
                             <Link to={`/movie-detail/${movie.id}`}><h2>{movie.original_title}</h2></Link>
-                            <button>Add to favourites</button>
+                            {
+                             favourites[movie.id] ? (
+                                <button className="button" onClick={() => onDelete(movie)}>Remove from Favourites</button>
+                             ) : (
+                                 <button className="button" onClick={() => onAdd(movie)}>Add to Favourites</button>
+                             ) 
+                            }
                         </div>
-                    )
+                    ))
                 }
             </div>
-            <Pagination loadMovieByPage={loadMovieByPage}/>
+            <Pagination loadMovieByPage={loadMovieByPage} />
         </div>
     )
 }
