@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import MovieList from './Components/MovieList';
 import MovieDetail from './Components/MovieDetails';
@@ -11,6 +10,10 @@ import {
   RouterProvider,
   Routes,
 } from "react-router-dom";
+
+import Header from "./Components/Header";
+import Favourite from "./Components/Favourite";
+
 
 // Way: 1
 // const router = createBrowserRouter([
@@ -32,11 +35,14 @@ function App() {
       {/* <RouterProvider router={router} /> */}
 
      {/* Way 2 */}
+
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<MovieList />} />
           <Route path="/movie-list" element={<Navigate to={"/"} />} />
           <Route path="/movie-detail/:movieId" element={<MovieDetail />} />
+          <Route path="/favourite" element={<Favourite />} />
           <Route path="*" element={<h1>Page not found!</h1>} />
         </Routes>
       </BrowserRouter>
