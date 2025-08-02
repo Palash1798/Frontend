@@ -1,0 +1,48 @@
+.movieList-wrapper {
+  padding: 40px;
+}
+
+.movielist {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.movie {
+  width: 200px;
+  height: 250px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.movielist-heading {
+  text-align: center;
+}
+
+.movie img {
+  max-width: 100%;
+}
+
+.movie h2 {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: white;
+}
+
+.movie button {
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.movie-detail {
+  padding: 40px;
+}
+
+.movie-detail img {
+  width: 100%;
+}
